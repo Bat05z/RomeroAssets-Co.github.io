@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Equipo en Acción | Gestión Integral</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d2c54;
+            --secondary-color: #dda74f;
+        }
+        body { font-family: 'Open Sans', sans-serif; padding-top: 90px; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+                .navbar {
+            background-color: var(--primary-color);
+            padding: 0 1rem;
+            transition: all 0.4s ease, transform 0.4s ease;
+            overflow: visible;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(13, 44, 84, 0.25);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            padding: 0;
+        }
+        
+        .navbar-brand img {
+            height: 90px;
+            transition: height 0.4s ease;
+            mix-blend-mode: lighten;
+        }
+        
+        .navbar.scrolled .navbar-brand img {
+            height: 90px;
+        }
+
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+            transition: color 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 700;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 450px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .service-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(13, 44, 84, 0.95) 0%, rgba(13, 44, 84, 0.7) 30%, rgba(13, 44, 84, 0.1) 60%, transparent 100%);
+            padding: 18px;
+            color: white;
+        }
+        
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .team-intro {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* ============ MOBILE RESPONSIVE ============ */
+        @media (max-width: 767px) {
+
+            /* Navbar */
+            .navbar-brand img { height: 65px !important; }
+            .navbar { padding: 0.3rem 1rem !important; }
+
+            /* Hero */
+            .page-header { padding: 70px 0 50px !important; }
+            .page-header h1 { font-size: 1.6rem !important; }
+
+            /* Stats row: 2 columns on mobile */
+            .stats-row .col-md-3 { flex: 0 0 50%; max-width: 50%; }
+            .stats-row .stat-number { font-size: 2rem !important; }
+
+            /* Service cards: reduce height, 1 per row */
+            .service-card { height: 280px !important; }
+            .col-md-4, .col-md-3 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Team intro padding */
+            .team-intro { padding: 40px 0 !important; }
+            .team-intro h2 { font-size: 1.5rem !important; }
+
+            /* WhatsApp */
+            .wa-float { bottom: 16px !important; right: 16px !important; width: 52px !important; height: 52px !important; font-size: 1.4rem !important; }
+        }
+
+        @media (min-width: 576px) and (max-width: 767px) {
+            /* 2 cards per row on tablets/large phones */
+            .col-md-4, .col-md-3 { flex: 0 0 50%; max-width: 50%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo-romero-assets.jpg" alt="Romero Assets & CO.">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="equipo.html">Equipo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#admin">Administración</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="text-white text-center" style="background: linear-gradient(rgba(13, 44, 84, 0.9), rgba(13, 44, 84, 0.8)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; padding: 120px 0;">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Nuestro Equipo en Acción</h1>
+            <p class="lead">Profesionales comprometidos con la excelencia en cada servicio</p>
+        </div>
+    </header>
+
+    <section class="team-intro">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="fw-bold mb-4" style="color: var(--primary-color);">Gestión con Criterio. Operaciones con Experiencia.</h2>
+                    <p class="lead text-muted mx-auto" style="max-width: 800px;">
+                        Somos una empresa familiar peruana con dos frentes bien definidos: una dirección financiera, legal y contable rigurosa, 
+                        y una gerencia de operaciones con más de 15 años en campo que cuestiona, supervisa y exige resultados. 
+                        Respaldados por una red de proveedores verificados, gestionamos tu edificio con presencia real y criterio profesional.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4 stats-row">
+                <div class="col-12 col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number">20+</div>
+                        <p class="text-muted fw-bold">Años de experiencia operativa</p>
+                        <p class="text-muted small">Gerencia de operaciones con trayectoria comprobada en supervisión de edificios residenciales.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number"><i class="fas fa-network-wired" style="font-size:2.2rem;"></i></div>
+                        <p class="text-muted fw-bold mt-2">Red de Proveedores</p>
+                        <p class="text-muted small">Contamos con una red consolidada de proveedores verificados para cada necesidad del edificio.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number">24/7</div>
+                        <p class="text-muted fw-bold">Disponibilidad</p>
+                        <p class="text-muted small">Atención permanente ante cualquier emergencia, sin importar el día ni la hora.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number">10+</div>
+                        <p class="text-muted fw-bold">Servicios Integrados</p>
+                        <p class="text-muted small">Soluciones integrales bajo un solo contrato, desde la gestión contable hasta el mantenimiento en campo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--primary-color);">Nuestros Servicios en Imágenes</h2>
+                <p class="text-muted">Ve lo que hacemos cada día para tu edificio</p>
+            </div>
+            
+            <!-- Fila 1: Servicios de Administración -->
+            <div class="row g-4 mb-5">
+                <div class="col-12 col-md-4">
+                    <div class="service-card shadow">
+                        <img src="gestion-contable.png" alt="Gestión Contable">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-calculator text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Gestión Contable y Financiera</h4>
+                            <p class="small mb-0">Reportes mensuales, control de morosidad y transparencia total en cada centavo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="service-card shadow">
+                        <img src="asesoria-legal.jpg" alt="Asesoría Legal">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-gavel text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Asesoría Legal y Laboral</h4>
+                            <p class="small mb-0">Cumplimiento normativo, reglamentos internos y resolución de conflictos vecinales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="service-card shadow">
+                        <img src="gestion-personal.png" alt="Supervisión Personal">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-users-cog text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Gestión de Personal</h4>
+                            <p class="small mb-0">Selección, capacitación y supervisión de conserjes, limpieza y mantenimiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fila 2: Servicios de Seguridad y Mantenimiento -->
+            <div class="row g-4 mb-5">
+                <div class="col-12 col-md-4">
+                    <div class="service-card shadow">
+                        <img src="seguridad-accesos.png" alt="Seguridad">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Seguridad y Control de Accesos</h4>
+                            <p class="small mb-0">Cámaras de vigilancia operativas, protocolos de acceso y registro de visitas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="service-card shadow">
+                        <img src="mantenimiento-electrico.png" alt="Mantenimiento" style="object-fit: cover; object-position: center 30%;">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-tools text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Mantenimiento Preventivo</h4>
+                            <p class="small mb-0">Inspecciones periódicas, reparaciones programadas y prevención de emergencias.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="service-card shadow">
+                        <img src="renovaciones-soldadura.png" alt="Renovaciones" style="object-fit: cover; object-position: center center;">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-paint-roller text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Renovaciones y Remodelaciones</h4>
+                            <p class="small mb-0">Gestión completa de proyectos con proveedores verificados. Gasfitería, electricidad, pintura, entre otros.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fila 3: Servicios Adicionales -->
+            <div class="row g-4 mb-5 justify-content-center">
+                <div class="col-12 col-md-3">
+                    <div class="service-card shadow">
+                        <img src="limpieza-pasillo.png" alt="Áreas Comunes">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-broom text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Limpieza de Áreas Comunes</h4>
+                            <p class="small mb-0">Lobby, pasillos, jardines y azotea impecables. Supervisión diaria de estándares.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="service-card shadow">
+                        <img src="jardineria-edificio.png" alt="Jardinería">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-leaf text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Jardinería y Áreas Verdes</h4>
+                            <p class="small mb-0">Mantenimiento de jardines, plantas ornamentales y espacios exteriores del edificio.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="service-card shadow">
+                        <img src="emergencias-mantenimiento.png" alt="Emergencias">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-exclamation-triangle text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Respuesta a Emergencias 24/7</h4>
+                            <p class="small mb-0">Filtraciones, cortes de luz, problemas de agua. Atención inmediata cualquier hora.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="service-card shadow">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Reportes">
+                        <div class="service-overlay">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line text-white"></i>
+                            </div>
+                            <h4 class="fw-bold">Reportes y Análisis Mensuales</h4>
+                            <p class="small mb-0">Informes detallados de gastos, ingresos, morosidad y estado general del edificio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h3 class="fw-bold mb-4" style="color: var(--primary-color);">¿Listo para ver la diferencia?</h3>
+            <p class="lead text-muted mb-4">Agenda una visita técnica gratuita y conoce cómo podemos transformar la administración de tu edificio</p>
+            <a href="index.html#contacto" class="btn btn-lg px-5 fw-bold text-white" style="background-color: var(--secondary-color);">Solicitar Propuesta</a>
+        </div>
+    </section>
+
+    <footer class="text-center py-4 bg-dark text-white">
+        <div class="container">
+            <div class="mb-3">
+                <a href="libro-reclamaciones.html" class="btn btn-sm btn-outline-light d-inline-flex align-items-center gap-2">
+                    <span style="font-size: 1.5rem;">📖</span>
+                    <span>Libro de Reclamaciones</span>
+                </a>
+            </div>
+            <p class="mb-0 small">&copy; 2026 Gestión de Condominios Lima. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Asegurar que solo el enlace correcto tenga la clase active
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                // Remover active de todos
+                link.classList.remove('active');
+                
+                // Verificar si este link corresponde a la página actual
+                const href = link.getAttribute('href');
+                if (href === currentPage || href === 'equipo.html') {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Navbar transparente al hacer scroll
+            const navbar = document.querySelector('.navbar');
+            
+            let hideTimer = null;
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.scrollY;
+
+                if (currentScroll > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (currentScroll > 100) {
+                    // Hide navbar
+                    navbar.style.transform = 'translateY(-100%)';
+
+                    // Clear any previous timer
+                    if (hideTimer) clearTimeout(hideTimer);
+
+                    // Reappear automatically after 800ms
+                    hideTimer = setTimeout(function() {
+                        navbar.style.transform = 'translateY(0)';
+                    }, 400);
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+    <!-- WhatsApp Flotante -->
+    <style>
+        .wa-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .wa-float:hover { transform: scale(1.15); }
+        .wa-float .wa-icon {
+            background-color: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .wa-float::before,
+        .wa-float::after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #25D366;
+            opacity: 0.5;
+            animation: wa-pulse 2s ease-out infinite;
+        }
+        .wa-float::after {
+            animation-delay: 0.8s;
+            opacity: 0.3;
+        }
+        @keyframes wa-pulse {
+            0%   { transform: scale(1);   opacity: 0.5; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+    </style>
+    <a href="https://wa.me/51995310644?text=Hola,%20deseo%20una%20visita%20técnica%20para%20mi%20edificio" target="_blank" class="wa-float" title="Contáctanos por WhatsApp">
+        <div class="wa-icon"><i class="fab fa-whatsapp"></i></div>
+    </a>
+
+</body>
+</html>

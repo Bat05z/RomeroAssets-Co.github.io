@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros | Misión y Visión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d2c54;
+            --secondary-color: #dda74f;
+        }
+        body { font-family: 'Open Sans', sans-serif; padding-top: 90px; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+                .navbar {
+            background-color: var(--primary-color);
+            padding: 0 1rem;
+            transition: all 0.4s ease, transform 0.4s ease;
+            overflow: visible;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(13, 44, 84, 0.25);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            padding: 0;
+        }
+        
+        .navbar-brand img {
+            height: 90px;
+            transition: height 0.4s ease;
+            mix-blend-mode: lighten;
+        }
+        
+        .navbar.scrolled .navbar-brand img {
+            height: 90px;
+        }
+
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+            transition: color 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 700;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        .vision-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        .mission-box {
+            border-left: 5px solid var(--secondary-color);
+            padding: 30px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+        
+        .mission-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border-left-width: 8px;
+        }
+        
+        .mission-box i {
+            transition: transform 0.4s ease;
+        }
+        
+        .mission-box:hover i {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        
+        /* Estilos específicos para los testimonios */
+        .testimonial-card {
+            background-color: #fff;
+            border: 1px solid #eef0f2;
+            border-radius: 8px;
+            height: 100%; /* Asegura altura uniforme */
+        }
+        .star-rating {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+        .quote-icon {
+            color: var(--secondary-color);
+            opacity: 0.3;
+            font-size: 2rem;
+        }
+        /* ============ MOBILE RESPONSIVE ============ */
+        @media (max-width: 767px) {
+
+            /* Navbar */
+            .navbar-brand img { height: 60px !important; }
+            .navbar { padding: 0.3rem 1rem !important; }
+
+            /* Hero / page header */
+            .page-header { padding: 70px 0 50px !important; }
+            .page-header h1 { font-size: 1.6rem !important; }
+
+            /* Misión/Visión cards: 1 columna */
+            .col-md-6 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Valores: 1 columna */
+            .col-md-4 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Mission box padding */
+            .mission-box { padding: 20px !important; }
+
+            /* Testimonios carrusel: 1 columna */
+            .carousel-item .col-md-4,
+            .carousel-item .col-md-5 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Vision section */
+            .vision-section { padding: 40px 0 !important; }
+
+            /* WhatsApp */
+            .wa-float { bottom: 16px !important; right: 16px !important; width: 52px !important; height: 52px !important; font-size: 1.4rem !important; }
+        }
+
+        @media (min-width: 576px) and (max-width: 767px) {
+            .col-md-4 { flex: 0 0 50%; max-width: 50%; }
+            .carousel-item .col-md-4 { flex: 0 0 100%; max-width: 100%; }
+        }
+        /* ============ MOBILE RESPONSIVE ============ */
+        @media (max-width: 767px) {
+
+            /* Navbar */
+            .navbar-brand img { height: 60px !important; }
+            .navbar { padding: 0.3rem 1rem !important; }
+
+            /* Hero header */
+            .page-header { padding: 70px 0 50px !important; }
+            .page-header h1 { font-size: 1.6rem !important; }
+
+            /* Misión/Visión boxes */
+            .mission-box { padding: 20px !important; }
+            .col-md-6 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Valores icons */
+            .col-md-4 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Carousel testimonios */
+            .carousel-item .col-md-4,
+            .carousel-item .col-md-5 { flex: 0 0 100%; max-width: 100%; }
+            .carousel-control-prev,
+            .carousel-control-next { display: none !important; }
+            .testimonial-card { margin-bottom: 1rem; }
+
+            /* WhatsApp */
+            .wa-float { bottom: 16px !important; right: 16px !important; width: 52px !important; height: 52px !important; font-size: 1.4rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo-romero-assets.jpg" alt="Romero Assets & CO.">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="nosotros.html">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="equipo.html">Equipo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#admin">Administración</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="text-white text-center" style="background: linear-gradient(rgba(13, 44, 84, 0.9), rgba(13, 44, 84, 0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; padding: 120px 0;">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Nuestra Identidad</h1>
+            <p class="lead">Trayectoria, compromiso y resultados comprobables.</p>
+        </div>
+    </header>
+
+    <section class="vision-section">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-12 col-md-6">
+                    <div class="mission-box">
+                        <div class="mb-3 text-center">
+                            <i class="fas fa-bullseye fa-3x" style="color: var(--primary-color);"></i>
+                        </div>
+                        <h2 class="text-center fw-bold mb-4" style="color: var(--primary-color);">Nuestra Misión</h2>
+                        <p class="lead text-muted text-center">
+                            "Atender y resolver las necesidades diarias de los residentes y propietarios de inmuebles en Lima, encargándonos de la administración, el mantenimiento y la supervisión del espacio con trato cercano, presencia constante y una gestión responsable, para que vivir en comunidad sea más ordenado, tranquilo y confiable."
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="mission-box">
+                        <div class="mb-3 text-center">
+                            <i class="fas fa-binoculars fa-3x" style="color: var(--primary-color);"></i>
+                        </div>
+                        <h2 class="text-center fw-bold mb-4" style="color: var(--primary-color);">Nuestra Visión</h2>
+                        <p class="lead text-muted text-center">
+                            "Convertirnos en un referente de la administración de edificios residenciales en Lima, reconocidos por una forma de trabajar cercana, responsable y presente, que eleva el estándar del servicio y mejora la experiencia de vivir en comunidad en una ciudad en constante crecimiento vertical."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h3 class="fw-bold mb-5" style="color: var(--primary-color);">Nuestros Pilares</h3>
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="mb-3"><i class="fas fa-file-invoice-dollar fa-3x" style="color: var(--secondary-color);"></i></div>
+                        <h5 class="fw-bold">Transparencia Total</h5>
+                        <p class="small text-muted">Cuentas claras y acceso permanente a la información financiera real del edificio.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="mb-3"><i class="fas fa-people-arrows fa-3x" style="color: var(--secondary-color);"></i></div>
+                        <h5 class="fw-bold">Trato Familiar</h5>
+                        <p class="small text-muted">No eres un número de departamento, eres nuestro vecino y amigo.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card h-100 border-0 shadow-sm p-4">
+                        <div class="mb-3"><i class="fas fa-bolt fa-3x" style="color: var(--secondary-color);"></i></div>
+                        <h5 class="fw-bold">Capacidad de Respuesta</h5>
+                        <p class="small text-muted">Soluciones rápidas y responsables ante problemas cotidianos y estructurales.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-4 text-muted">Estos principios guían cada decisión que tomamos en conjunto por tu edificio.</p>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="text-uppercase fw-bold text-muted small">Experiencia Comprobada</span>
+                <h2 class="fw-bold" style="color: var(--primary-color);">Lo que dicen nuestros vecinos</h2>
+                <div style="width: 50px; height: 3px; background-color: var(--secondary-color); margin: 10px auto;"></div>
+                <p class="text-muted w-75 mx-auto">La confianza se construye con resultados.</p>
+            </div>
+
+            <div id="testimoniosCarrusel" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-wrap="true">
+                
+                <div class="carousel-inner p-2"> 
+                    
+                    <div class="carousel-item active">
+                        <div class="row g-4">
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Teníamos una morosidad del 35% y las cuentas en rojo. Su gestión contable fue impecable; recuperaron gran parte de la deuda en 6 meses."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Arq. Roberto C.</h6>
+                                        <small class="text-muted">Presidente de Junta - Edificio Opus 360</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Lo que más valoro es la supervisión. Aquí se nota la presencia en campo, el edificio está limpio y los equipos funcionan."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Sra. Carmen V.</h6>
+                                        <small class="text-muted">Propietaria - Edificio Inizio</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Su asesoría legal fue clave para poner orden aplicando el reglamento interno con firmeza pero con respeto ante vecinos ruidosos."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Dr. Jorge L.</h6>
+                                        <small class="text-muted">Junta De Propietarios - Raíces de Higuereta</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row g-4">
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Su asesoría legal fue clave para poner orden aplicando el reglamento interno con firmeza pero con respeto ante vecinos ruidosos."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Dr. Jorge L.</h6>
+                                        <small class="text-muted">Junta De Propietarios - Raíces de Higuereta</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Es un alivio contar con ellos. He usado el servicio de limpieza privada en los interiores, y la confianza es total."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Lucía M.</h6>
+                                        <small class="text-muted">Residente - Raíces de Higuereta</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Transparencia es la palabra que los define. Los reportes mensuales son detallados. Se siente que cuidan nuestro dinero."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Lic. Ana S.</h6>
+                                        <small class="text-muted">Propietaria - Edificio Opus 360</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row g-4">
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Implementaron un control de accesos estricto y cámaras funcionales. Antes entraba cualquiera, ahora nos sentimos seguros en casa."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Sra. Patricia Q.</h6>
+                                        <small class="text-muted">Vecina - Miraflores</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Mi departamento se valorizó. Las áreas comunes estaban abandonadas y ahora el lobby y los jardines lucen impecables. Gran gestión."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Sr. Fernando T.</h6>
+                                        <small class="text-muted">Propietario - Av. Dos de Mayo</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card testimonial-card p-4 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <div class="star-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                        <i class="fas fa-quote-right quote-icon"></i>
+                                    </div>
+                                    <p class="fst-italic text-muted">"Tuvimos una filtración grave en la bomba de agua a las 2 a.m. Respondieron de inmediato y evitaron un desastre mayor. Profesionales."</p>
+                                    <div class="mt-auto pt-3 border-top">
+                                        <h6 class="fw-bold mb-0 text-dark">Ing. Luis M.</h6>
+                                        <small class="text-muted">Junta De Propietarios- Edificio Inizio</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimoniosCarrusel" data-bs-slide="prev" style="width: 5%;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimoniosCarrusel" data-bs-slide="next" style="width: 5%;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="text-center py-4 bg-dark text-white">
+        <div class="container">
+            <div class="mb-3">
+                <a href="libro-reclamaciones.html" class="btn btn-sm btn-outline-light d-inline-flex align-items-center gap-2">
+                    <span style="font-size: 1.5rem;">📖</span>
+                    <span>Libro de Reclamaciones</span>
+                </a>
+            </div>
+            <p class="mb-0 small">&copy; 2026 Gestión de Condominios Lima. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Asegurar que solo el enlace correcto tenga la clase active
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                // Remover active de todos
+                link.classList.remove('active');
+                
+                // Verificar si este link corresponde a la página actual
+                const href = link.getAttribute('href');
+                if (href === currentPage || href === 'nosotros.html') {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Navbar transparente al hacer scroll
+            const navbar = document.querySelector('.navbar');
+            
+            let hideTimer = null;
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.scrollY;
+
+                if (currentScroll > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (currentScroll > 100) {
+                    // Hide navbar
+                    navbar.style.transform = 'translateY(-100%)';
+
+                    // Clear any previous timer
+                    if (hideTimer) clearTimeout(hideTimer);
+
+                    // Reappear automatically after 800ms
+                    hideTimer = setTimeout(function() {
+                        navbar.style.transform = 'translateY(0)';
+                    }, 400);
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+    <!-- WhatsApp Flotante -->
+    <style>
+        .wa-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .wa-float:hover { transform: scale(1.15); }
+        .wa-float .wa-icon {
+            background-color: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .wa-float::before,
+        .wa-float::after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #25D366;
+            opacity: 0.5;
+            animation: wa-pulse 2s ease-out infinite;
+        }
+        .wa-float::after {
+            animation-delay: 0.8s;
+            opacity: 0.3;
+        }
+        @keyframes wa-pulse {
+            0%   { transform: scale(1);   opacity: 0.5; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+    </style>
+    <a href="https://wa.me/51995310644?text=Hola,%20deseo%20una%20visita%20técnica%20para%20mi%20edificio" target="_blank" class="wa-float" title="Contáctanos por WhatsApp">
+        <div class="wa-icon"><i class="fab fa-whatsapp"></i></div>
+    </a>
+
+</body>
+</html>

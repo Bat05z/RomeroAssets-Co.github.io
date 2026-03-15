@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración Integral & Servicios | Tu Empresa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d2c54; /* Azul Seriedad/Legal */
+            --secondary-color: #dda74f; /* Dorado/Ocre - Toque Premium/Servicio */
+            --accent-green: #28a745; /* Verde Contable/WhatsApp */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            padding-top: 90px;
+        }
+
+        h1, h2, h3, h4, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+                .navbar {
+            background-color: var(--primary-color);
+            padding: 0 1rem;
+            transition: all 0.4s ease, transform 0.4s ease;
+            overflow: visible;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(13, 44, 84, 0.25);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            padding: 0;
+        }
+        
+        .navbar-brand img {
+            height: 90px;
+            transition: height 0.4s ease;
+            mix-blend-mode: lighten;
+        }
+        
+        .navbar.scrolled .navbar-brand img {
+            height: 90px;
+        }
+
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+            transition: color 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 700;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(13, 44, 84, 0.9), rgba(13, 44, 84, 0.8)), url('lima-hero.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+        }
+
+        .card-service {
+            border: 1px solid #eee;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+        }
+
+        .card-service:hover {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.13);
+            transform: translateY(-8px);
+            border-bottom: 4px solid var(--secondary-color);
+        }
+        
+        .card-service-image {
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            background-size: cover;
+            background-position: center top;
+            border-radius: 8px;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease;
+        }
+
+        .card-service-image:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+        }
+
+        .card-service-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            background-size: cover;
+            background-position: center top;
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+
+        .card-service-image:hover::before {
+            transform: scale(1.08);
+        }
+        
+        .card-service-image .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(13, 44, 84, 0.97) 0%, rgba(13, 44, 84, 0.85) 50%, transparent 100%);
+            padding: 15px;
+            color: white;
+            z-index: 1;
+            transition: background 0.4s ease;
+        }
+
+        .card-service-image:hover .card-overlay {
+            background: linear-gradient(to top, rgba(13, 44, 84, 1) 0%, rgba(13, 44, 84, 0.9) 55%, transparent 100%);
+        }
+
+        /* Tarjetas simples con ícono */
+        .card.shadow-sm {
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.35s ease;
+        }
+
+        .card.shadow-sm:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+        }
+
+        .card.shadow-sm i {
+            transition: transform 0.35s ease, color 0.3s ease;
+        }
+
+        .card.shadow-sm:hover i {
+            transform: scale(1.2);
+            color: var(--secondary-color) !important;
+        }
+        
+        .card-service-image .icon-box {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: white;
+            margin: 0 auto 8px;
+        }
+        
+        .card-service-image h4 {
+            color: white;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .card-service-image p {
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin-bottom: 0;
+            font-size: 0.78rem;
+            line-height: 1.4;
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+        }
+
+        .premium-badge {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .team-section {
+            background-color: #f1f4f8;
+        }
+        /* ============ MOBILE RESPONSIVE ============ */
+        @media (max-width: 767px) {
+
+            /* Navbar */
+            .navbar-brand img { height: 60px !important; }
+            .navbar { padding: 0.3rem 1rem !important; }
+
+            /* Hero */
+            .hero-section { padding: 80px 0 60px; }
+            .hero-section h1 { font-size: 1.7rem !important; }
+            .hero-section p.lead { font-size: 1rem !important; }
+            .hero-section .btn { width: 100%; margin-bottom: 0.5rem; }
+
+            /* CTA Banner */
+            .cta-banner-inner {
+                flex-direction: column !important;
+                text-align: center;
+                gap: 10px !important;
+            }
+            .cta-banner-inner .d-flex { justify-content: center; }
+            .cta-banner-label { display: none; }
+
+            /* Admin cards */
+            .card-service-image { min-height: 220px !important; }
+
+            /* Servicios section */
+            section#servicios .card { min-height: 200px !important; }
+
+            /* Contact section */
+            #contacto .col-lg-4,
+            #contacto .col-lg-7 { padding-left: 0.75rem; padding-right: 0.75rem; }
+            #contacto .card-body { padding: 1.5rem !important; }
+            #contacto .col-md-6 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Footer */
+            footer .col-md-4 { text-align: center; margin-bottom: 1.5rem; }
+            footer .d-flex { justify-content: center !important; }
+
+            /* WhatsApp floating button */
+            .wa-float { bottom: 16px !important; right: 16px !important; width: 52px !important; height: 52px !important; font-size: 1.4rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo-romero-assets.jpg" alt="Romero Assets & CO.">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="equipo.html">Equipo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admin">Administración</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios adicionales</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="hero-section text-center">
+        <div class="container">
+            <span class="text-uppercase fw-bold" style="color: var(--secondary-color); letter-spacing: 2px;">Gestión de propiedad inmobiliaria</span>
+            <h1 class="display-3 fw-bold my-4">Tu Edificio en Manos Expertas,<br>Tu Vida más Sencilla</h1>
+            <p class="lead mb-5 mx-auto" style="max-width: 800px;">
+                Combinamos la <strong>precisión contable y legal</strong> con una <strong>supervisión operativa rigurosa</strong>. 
+                Desde el mantenimiento del edificio hasta la gestión financiera y legal. Nosotros nos encargamos de todo.
+            </p>
+            <a href="#contacto" class="btn btn-lg px-5 fw-bold" style="background-color: var(--secondary-color); color: white;">Solicitar Propuesta</a>
+        </div>
+    </section>
+
+    <section id="nosotros" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <img src="reunion-vecinos.png" alt="Reunión de junta de vecinos" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-12 col-lg-6 mt-4 mt-lg-0">
+                    <h2 class="fw-bold mb-4" style="color: var(--primary-color);">El Equilibrio Perfecto: Oficina y Campo</h2>
+                    <p class="lead text-muted">Somos una empresa familiar peruana que entiende lo que vale tu propiedad inmobiliaria.</p>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-4">
+                            <i class="fas fa-file-invoice-dollar fa-2x" style="color: var(--secondary-color);"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Gestión Financiera, Legal y Laboral</h5>
+                            <p>Liderado por un <strong>profesional Contable</strong>. Garantizamos cobranza eficiente, transparencia absoluta en los egresos, cumplimiento legal y laboral, además de reportes financieros mensuales para que conozcas a profundidad la situación económica del edificio.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="me-4">
+                            <i class="fas fa-hard-hat fa-2x" style="color: var(--secondary-color);"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold">Supervisión Operativa en Campo</h5>
+                            <p>Con más de 20 años de experiencia laboral, mi socio (y padre) supervisa personalmente al recurso humano, las renovaciones y el mantenimiento. <strong>Aquí nadie nos cuenta cuentos; cuestionamos todo.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="admin" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--primary-color);">Romero Assets & Co.</h2>
+                <p>La base de una buena convivencia es el orden y las cuentas claras.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <div class="card card-service-image border-0 shadow" style="background-image: url('contabilidad-transparente.png');">
+                        <div class="card-overlay text-center">
+                            <div class="icon-box"><i class="fas fa-calculator fa-2x"></i></div>
+                            <h4 class="fw-bold">Contabilidad Transparente</h4>
+                            <p class="small">Reportes financieros mensuales, gestión de morosidad y pago puntual de servicios comunes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card card-service-image border-0 shadow" style="background-image: url('seguridad-control.png');">
+                        <div class="card-overlay text-center">
+                            <div class="icon-box"><i class="fas fa-user-shield fa-2x"></i></div>
+                            <h4 class="fw-bold">Seguridad y Control</h4>
+                            <p class="small">Gestión de personal conserje, limpieza y mantenimiento. Además, el correcto manejo de cámaras de vigilancia y protocolos de acceso rigurosos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card card-service-image border-0 shadow" style="background-image: url('Imagen3.png'); background-size: 100%; background-position: center center;">
+                        <div class="card-overlay text-center">
+                            <div class="icon-box"><i class="fas fa-gavel fa-2x"></i></div>
+                            <h4 class="fw-bold">Asesoría Legal y Laboral</h4>
+                            <p class="small">Cumplimiento ético de normas y leyes laborales y de propiedad inmobiliaria (D. Leg. 728, Ley N° 29783, Ley 27157, Ley 29090, etc). Contamos con tolerancia de conflictos vecinales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner → Nosotros -->
+    <a href="nosotros.html" class="text-decoration-none d-block" style="background: linear-gradient(90deg, var(--primary-color) 0%, #1a4a80 50%, var(--primary-color) 100%); padding: 18px 0; position: relative; overflow: hidden;">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 60px);pointer-events:none;"></div>
+        <div class="container d-flex align-items-center justify-content-between cta-banner-inner">
+            <div class="d-flex align-items-center gap-3">
+                <div style="width:36px;height:36px;border-radius:50%;background:rgba(221,167,79,0.2);border:1px solid var(--secondary-color);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <i class="fas fa-building" style="color:var(--secondary-color);font-size:0.85rem;"></i>
+                </div>
+                <p class="mb-0 text-white fw-semibold" style="font-family:'Montserrat',sans-serif;letter-spacing:0.3px;">
+                    Una empresa familiar con propósito claro — <span style="color:var(--secondary-color);">conoce quiénes somos y qué nos mueve.</span>
+                </p>
+            </div>
+            <div class="d-flex align-items-center gap-2 flex-shrink-0 ms-4">
+                <span class="fw-bold text-white cta-banner-label" style="font-size:0.9rem;letter-spacing:1px;">NUESTRA IDENTIDAD</span>
+                <i class="fas fa-arrow-right" style="color:var(--secondary-color);"></i>
+            </div>
+        </div>
+    </a>
+
+    <section id="servicios" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="premium-badge">SOLUCIONES A TU PUERTA</span>
+                <h2 class="fw-bold" style="color: var(--primary-color);">¿Necesitas algo en tu departamento?</h2>
+                <p class="lead">No busques fuera. Como administradores, te ofrecemos servicios privados de confianza.</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-service-image border-0 shadow" style="background-image: url('reparaciones-express.png'); background-size: cover; background-position: center;">
+                        <div class="card-overlay text-center">
+                            <h4 class="fw-bold">Reparaciones Express</h4>
+                            <p class="small">Gasfitería, electricidad o pintura menor. Supervisado por nosotros.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card card-service-image border-0 shadow" style="background-image: url('renovaciones.png'); background-size: cover; background-position: center;">
+                        <div class="card-overlay text-center">
+                            <h4 class="fw-bold">Renovaciones</h4>
+                            <p class="small">Gestión de proyectos de remodelación con proveedores verificados.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <a href="equipo.html" class="text-decoration-none h-100 d-block">
+                        <div class="card h-100 text-center p-4 border-0 shadow-sm d-flex flex-column align-items-center justify-content-center" style="background: linear-gradient(135deg, var(--primary-color), #1a4a80); min-height: 280px; cursor: pointer; transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);" onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 15px 30px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow=''">
+                            <div style="width:65px;height:65px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+                                <i class="fas fa-plus fa-2x" style="color:var(--secondary-color);"></i>
+                            </div>
+                            <h5 class="fw-bold text-white mb-2">Y mucho más...</h5>
+                            <p class="small mb-3" style="color:rgba(255,255,255,0.75);">Conoce todos los servicios que nuestro equipo ofrece para tu edificio.</p>
+                            <span class="fw-bold" style="color:var(--secondary-color);font-size:0.85rem;letter-spacing:1px;">VER EQUIPO <i class="fas fa-arrow-right ms-1"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-5" style="background-color: var(--primary-color);">
+        <div class="container">
+
+            <!-- Título superior -->
+            <div class="text-center text-white mb-5">
+                <h2 class="fw-bold">¿Listo para valorizar tu propiedad?</h2>
+                <p class="mb-0 text-white-50">Agenda una visita gratuita. Evaluaremos el estado actual y te presentaremos una propuesta de mejora inmediata.</p>
+            </div>
+
+            <div class="row g-4 align-items-stretch justify-content-end">
+
+                <!-- Columna izquierda: Directivos + WhatsApp -->
+                <div class="col-12 col-lg-4 text-white d-flex flex-column gap-3">
+
+                    <!-- Card Gerente General -->
+                    <div class="p-4 rounded-3" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px);">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div style="width:52px;height:52px;border-radius:50%;background-color:var(--secondary-color);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <i class="fas fa-user-tie fa-lg text-white"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0 fw-bold fs-6">Brayan Obregón</p>
+                                <small style="color: var(--secondary-color); letter-spacing: 0.5px;">GERENTE GENERAL</small>
+                            </div>
+                        </div>
+                        <p class="small mb-0" style="color: rgba(255,255,255,0.75);">Responsable de la dirección estratégica, gestión financiera, legal y laboral del inmueble. Proporcionado por un profesional contable.</p>
+                    </div>
+
+                    <!-- Card Gerente de Operaciones -->
+                    <div class="p-4 rounded-3" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(4px);">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div style="width:52px;height:52px;border-radius:50%;background-color:var(--secondary-color);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <i class="fas fa-hard-hat fa-lg text-white"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0 fw-bold fs-6">Germán Obregón</p>
+                                <small style="color: var(--secondary-color); letter-spacing: 0.5px;">GERENTE DE OPERACIONES Y PLANEAMIENTO</small>
+                            </div>
+                        </div>
+                        <p class="small mb-0" style="color: rgba(255,255,255,0.75);">Supervisión directa del personal, mantenimiento preventivo y operaciones en campo con más de 20 años de experiencia.</p>
+                    </div>
+
+                    <!-- WhatsApp + Teléfono -->
+                    <a href="https://wa.me/51995310644?text=Hola,%20deseo%20una%20visita%20técnica%20para%20mi%20edificio" target="_blank" class="btn btn-success btn-lg text-start">
+                        <i class="fab fa-whatsapp fa-lg me-2"></i> Contactar por WhatsApp
+                    </a>
+                    <div class="p-3 rounded" style="background: rgba(255,255,255,0.1);">
+                        <p class="mb-1 text-white-50"><small>DIRECTO A GERENCIA:</small></p>
+                        <p class="mb-0 fw-bold text-white"><i class="fas fa-phone me-2"></i> 995 310 644</p>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Formulario -->
+                <div class="col-12 col-lg-7">
+                    <div class="card shadow-lg border-0 h-100">
+                        <div class="card-body p-4 p-lg-5">
+                            <h4 class="mb-1 fw-bold" style="color: var(--primary-color);">Solicitar Cotización Formal</h4>
+                            <p class="text-muted small mb-4">Nos pondremos en contacto contigo en menos de 24 horas.</p>
+                            
+                            <form action="https://formspree.io/f/mjgvaygr" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label small fw-bold">Nombre Completo</label>
+                                        <input type="text" name="nombre" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label small fw-bold">Teléfono / Celular</label>
+                                        <input type="tel" name="telefono" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">Dirección del Edificio</label>
+                                    <input type="text" name="direccion" class="form-control" placeholder="Distrito, Calle..." required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">¿Qué problemas tienen actualmente?</label>
+                                    <textarea name="mensaje" class="form-control" rows="4" placeholder="Ej: Morosidad alta, mala limpieza, falta de seguridad..."></textarea>
+                                </div>
+                                <button type="submit" class="btn w-100 fw-bold text-white py-3" style="background-color: var(--secondary-color); letter-spacing: 1px;">ENVIAR SOLICITUD</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-4 bg-dark text-white">
+        <div class="container">
+            <div class="mb-3">
+                <a href="libro-reclamaciones.html" class="btn btn-sm btn-outline-light d-inline-flex align-items-center gap-2">
+                    <span style="font-size: 1.5rem;">📖</span>
+                    <span>Libro de Reclamaciones</span>
+                </a>
+            </div>
+            <p class="mb-0 small">&copy; 2026 Gestión de Condominios Lima. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Asegurar que solo el enlace correcto tenga la clase active
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                // Remover active de todos
+                link.classList.remove('active');
+                
+                // Verificar si este link corresponde a la página actual
+                const href = link.getAttribute('href');
+                if (href === currentPage || 
+                    (currentPage === '' && href === 'index.html') ||
+                    (currentPage === 'index.html' && href === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Navbar transparente al hacer scroll
+            const navbar = document.querySelector('.navbar');
+            
+            let hideTimer = null;
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.scrollY;
+
+                if (currentScroll > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (currentScroll > 100) {
+                    // Hide navbar
+                    navbar.style.transform = 'translateY(-100%)';
+
+                    // Clear any previous timer
+                    if (hideTimer) clearTimeout(hideTimer);
+
+                    // Reappear automatically after 800ms
+                    hideTimer = setTimeout(function() {
+                        navbar.style.transform = 'translateY(0)';
+                    }, 400);
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+
+
+    <!-- WhatsApp Flotante -->
+    <style>
+        .wa-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .wa-float:hover { transform: scale(1.15); }
+        .wa-float .wa-icon {
+            background-color: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .wa-float::before,
+        .wa-float::after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #25D366;
+            opacity: 0.5;
+            animation: wa-pulse 2s ease-out infinite;
+        }
+        .wa-float::after {
+            animation-delay: 0.8s;
+            opacity: 0.3;
+        }
+        @keyframes wa-pulse {
+            0%   { transform: scale(1);   opacity: 0.5; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+    </style>
+    <a href="https://wa.me/51995310644?text=Hola,%20deseo%20una%20visita%20técnica%20para%20mi%20edificio" target="_blank" class="wa-float" title="Contáctanos por WhatsApp">
+        <div class="wa-icon"><i class="fab fa-whatsapp"></i></div>
+    </a>
+
+</body>
+</html>

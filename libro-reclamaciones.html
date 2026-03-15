@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libro de Reclamaciones | Gestión Integral</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d2c54;
+            --secondary-color: #dda74f;
+        }
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            padding-top: 90px;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+                .navbar {
+            background-color: var(--primary-color);
+            padding: 0 1rem;
+            transition: all 0.4s ease, transform 0.4s ease;
+            overflow: visible;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(13, 44, 84, 0.25);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            padding: 0;
+        }
+        
+        .navbar-brand img {
+            height: 90px;
+            transition: height 0.4s ease;
+            mix-blend-mode: lighten;
+        }
+        
+        .navbar.scrolled .navbar-brand img {
+            height: 90px;
+        }
+
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+            transition: color 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 700;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        .libro-header {
+            background-color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .libro-logo {
+            max-width: 300px;
+            margin: 0 auto 20px;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .form-control, .form-select {
+            border: 2px solid #e0e0e0;
+            padding: 12px;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(221, 167, 79, 0.25);
+        }
+        
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 50px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .info-box {
+            background-color: #f0f7ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        
+        .required {
+            color: red;
+        }
+        /* ============ MOBILE RESPONSIVE ============ */
+        @media (max-width: 767px) {
+
+            /* Navbar */
+            .navbar-brand img { height: 60px !important; }
+            .navbar { padding: 0.3rem 1rem !important; }
+
+            /* Header */
+            .libro-header { padding: 25px 0 !important; }
+            .libro-header h1 { font-size: 1.6rem !important; }
+            .libro-header p { font-size: 0.9rem !important; }
+
+            /* Form container: quitar padding lateral */
+            .form-container { padding: 20px 16px !important; margin: 0 12px 30px !important; }
+
+            /* Campos en 1 columna */
+            .row .col-md-6,
+            .row .col-md-4 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Botón submit: ancho completo */
+            .btn-submit { width: 100%; padding: 14px !important; font-size: 1rem !important; }
+
+            /* Info box */
+            .info-box { padding: 15px !important; }
+
+            /* WhatsApp */
+            .wa-float { bottom: 16px !important; right: 16px !important; width: 52px !important; height: 52px !important; font-size: 1.4rem !important; }
+        }
+        /* ============ MOBILE RESPONSIVE ============ */
+        @media (max-width: 767px) {
+
+            /* Navbar */
+            .navbar-brand img { height: 60px !important; }
+            .navbar { padding: 0.3rem 1rem !important; }
+
+            /* Header */
+            .libro-header { padding: 25px 0 !important; }
+            .libro-header h1 { font-size: 1.6rem !important; }
+            .libro-header p { font-size: 0.9rem !important; }
+
+            /* Form container */
+            .form-container { padding: 20px !important; margin: 0 12px 30px !important; }
+
+            /* Form grid: stack columns */
+            .form-container .row .col-md-6,
+            .form-container .row .col-md-4,
+            .form-container .row .col-md-8 { flex: 0 0 100%; max-width: 100%; }
+
+            /* Submit button */
+            .btn-submit { width: 100%; padding: 14px !important; font-size: 1rem !important; }
+
+            /* Info box */
+            .info-box { padding: 14px !important; font-size: 0.9rem; }
+
+            /* Legal section */
+            .col-md-6 { flex: 0 0 100%; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo-romero-assets.jpg" alt="Romero Assets & CO.">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="equipo.html">Equipo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#admin">Administración</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="libro-header">
+        <div class="container text-center">
+            <div class="libro-logo mx-auto mb-3">
+                <p class="mb-0" style="font-family:'Montserrat',sans-serif; font-size:2rem; font-weight:700; color:var(--primary-color); letter-spacing:1px;">ROMERO ASSETS <span style="color:var(--secondary-color);">&</span> CO.</p>
+            </div>
+            <h1 class="fw-bold" style="color: var(--primary-color);">Libro de Reclamaciones</h1>
+            <p class="mx-auto mt-2" style="max-width:600px; color:var(--primary-color); font-size:0.95rem; font-style:italic; border-left: 3px solid var(--secondary-color); padding-left:12px; text-align:left;">
+                Tu opinión no es una queja, es una oportunidad. Cada reclamo que recibimos nos impulsa a mejorar y a ofrecerte un servicio que esté a la altura de tu confianza.
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <div class="info-box">
+                <h5 class="fw-bold mb-3"><i class="fas fa-info-circle me-2"></i>Información Importante</h5>
+                <ul class="mb-0">
+                    <li>Este formulario es para presentar reclamos o quejas sobre nuestros servicios de administración de inmuebles.</li>
+                    <li>Todos los campos marcados con <span class="required">*</span> son obligatorios.</li>
+                    <li>Su reclamo será atendido en un plazo máximo de 30 días calendario según la Ley N° 29571.</li>
+                    <li>Recibirá una copia de su reclamo al correo electrónico proporcionado.</li>
+                </ul>
+            </div>
+
+            <form action="https://formspree.io/f/mjgvaygr" method="POST">
+                <input type="hidden" name="_subject" value="Nuevo Reclamo - Libro de Reclamaciones">
+                
+                <div class="row mb-3">
+                    <div class="col-12 col-md-6">
+                        <label class="form-label">Fecha <span class="required">*</span></label>
+                        <input type="date" name="fecha" class="form-control" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label">Hora</label>
+                        <input type="time" name="hora" class="form-control">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre Completo <span class="required">*</span></label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Ingrese su nombre completo" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Domicilio <span class="required">*</span></label>
+                    <input type="text" name="domicilio" class="form-control" placeholder="Dirección completa" required>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12 col-md-6">
+                        <label class="form-label">Departamento <span class="required">*</span></label>
+                        <select name="departamento" class="form-select" required>
+                            <option value="">Seleccionar Departamento</option>
+                            <option value="Lima">Lima</option>
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Áncash">Áncash</option>
+                            <option value="Apurímac">Apurímac</option>
+                            <option value="Arequipa">Arequipa</option>
+                            <option value="Ayacucho">Ayacucho</option>
+                            <option value="Callao">Callao</option>
+                            <option value="Cajamarca">Cajamarca</option>
+                            <option value="Cusco">Cusco</option>
+                            <option value="Huancavelica">Huancavelica</option>
+                            <option value="Huánuco">Huánuco</option>
+                            <option value="Ica">Ica</option>
+                            <option value="Junín">Junín</option>
+                            <option value="La Libertad">La Libertad</option>
+                            <option value="Lambayeque">Lambayeque</option>
+                            <option value="Loreto">Loreto</option>
+                            <option value="Madre de Dios">Madre de Dios</option>
+                            <option value="Moquegua">Moquegua</option>
+                            <option value="Pasco">Pasco</option>
+                            <option value="Piura">Piura</option>
+                            <option value="Puno">Puno</option>
+                            <option value="San Martín">San Martín</option>
+                            <option value="Tacna">Tacna</option>
+                            <option value="Tumbes">Tumbes</option>
+                            <option value="Ucayali">Ucayali</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label">Distrito</label>
+                        <input type="text" name="distrito" class="form-control" placeholder="Distrito">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Tipo de Documento <span class="required">*</span></label>
+                        <select name="tipo_documento" class="form-select" required>
+                            <option value="">Seleccionar</option>
+                            <option value="DNI">DNI</option>
+                            <option value="CE">Carnet de Extranjería</option>
+                            <option value="RUC">RUC</option>
+                            <option value="Pasaporte">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <label class="form-label">N° Documento <span class="required">*</span></label>
+                        <input type="text" name="numero_documento" class="form-control" placeholder="Número de documento" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-12 col-md-6">
+                        <label class="form-label">Correo Electrónico <span class="required">*</span></label>
+                        <input type="email" name="correo" class="form-control" placeholder="ejemplo@correo.com" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label">Teléfono / Celular <span class="required">*</span></label>
+                        <input type="tel" name="telefono" class="form-control" placeholder="999 999 999" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">¿Es menor de edad?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="menor_edad" value="SI" id="menorSi">
+                        <label class="form-check-label" for="menorSi">Sí</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="menor_edad" value="NO" id="menorNo" checked>
+                        <label class="form-check-label" for="menorNo">No</label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre del Edificio / Condominio <span class="required">*</span></label>
+                    <input type="text" name="edificio" class="form-control" placeholder="Nombre del edificio que administramos" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Servicio o Área de Reclamo <span class="required">*</span></label>
+                    <select name="servicio" class="form-select" required>
+                        <option value="">Seleccionar</option>
+                        <option value="Administración y Contabilidad">Administración y Contabilidad</option>
+                        <option value="Asesoría Legal y Laboral">Asesoría Legal y Laboral</option>
+                        <option value="Gestión de Personal">Gestión de Personal</option>
+                        <option value="Seguridad y Control de Accesos">Seguridad y Control de Accesos</option>
+                        <option value="Mantenimiento Preventivo">Mantenimiento Preventivo</option>
+                        <option value="Limpieza de Áreas Comunes">Limpieza de Áreas Comunes</option>
+                        <option value="Car Wash">Car Wash</option>
+                        <option value="Limpieza Privada de Departamentos">Limpieza Privada de Departamentos</option>
+                        <option value="Renovaciones y Remodelaciones">Renovaciones y Remodelaciones</option>
+                        <option value="Jardinería y Áreas Verdes">Jardinería y Áreas Verdes</option>
+                        <option value="Respuesta a Emergencias 24/7">Respuesta a Emergencias 24/7</option>
+                        <option value="Reportes Financieros">Reportes Financieros</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tipo de Solicitud <span class="required">*</span></label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo_solicitud" value="Reclamo" id="reclamo" required>
+                        <label class="form-check-label" for="reclamo">
+                            <strong>Reclamo:</strong> Disconformidad relacionada con los servicios prestados
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo_solicitud" value="Queja" id="queja">
+                        <label class="form-check-label" for="queja">
+                            <strong>Queja:</strong> Disconformidad no relacionada directamente con los servicios
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Detalle del Reclamo / Queja <span class="required">*</span></label>
+                    <textarea name="descripcion" class="form-control" rows="6" placeholder="Describa detalladamente su reclamo o queja, incluyendo fecha, hora y circunstancias del hecho..." required></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Pedido del Consumidor</label>
+                    <textarea name="pedido" class="form-control" rows="3" placeholder="¿Qué solución espera? (opcional)"></textarea>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-submit">
+                        <i class="fas fa-paper-plane me-2"></i>ENVIAR RECLAMO
+                    </button>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <small class="text-muted">
+                        <i class="fas fa-lock me-1"></i>
+                        Sus datos están protegidos según la Ley N° 29733 - Ley de Protección de Datos Personales
+                    </small>
+                </div>
+            </form>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3" style="color: var(--primary-color);">
+                            <i class="fas fa-gavel me-2"></i>Marco Legal
+                        </h5>
+                        <ul class="small">
+                            <li><strong>Ley N° 29571:</strong> Código de Protección y Defensa del Consumidor</li>
+                            <li><strong>D.S. N° 011-2011-PCM:</strong> Reglamento del Libro de Reclamaciones</li>
+                            <li><strong>Ley N° 29733:</strong> Ley de Protección de Datos Personales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3" style="color: var(--primary-color);">
+                            <i class="fas fa-clock me-2"></i>Plazos de Atención
+                        </h5>
+                        <ul class="small mb-0">
+                            <li><strong>Respuesta inicial:</strong> Dentro de 5 días hábiles</li>
+                            <li><strong>Resolución final:</strong> Máximo 30 días calendario</li>
+                            <li><strong>Notificación:</strong> Vía correo electrónico y/o teléfono</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 bg-dark text-white">
+        <div class="container">
+            <div class="mb-3">
+                <a href="libro-reclamaciones.html" class="btn btn-sm btn-outline-light d-inline-flex align-items-center gap-2">
+                    <span style="font-size: 1.5rem;">📖</span>
+                    <span>Libro de Reclamaciones</span>
+                </a>
+            </div>
+            <p class="mb-0 small">&copy; 2026 Gestión de Condominios Lima. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Asegurar que solo el enlace correcto tenga la clase active
+        document.addEventListener('DOMContentLoaded', function() {
+            // Establecer fecha actual por defecto
+            const fechaInput = document.querySelector('input[name="fecha"]');
+            if (fechaInput) {
+                const hoy = new Date().toISOString().split('T')[0];
+                fechaInput.value = hoy;
+            }
+            
+            // Navbar transparente al hacer scroll
+            const navbar = document.querySelector('.navbar');
+            
+            let hideTimer = null;
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.scrollY;
+
+                if (currentScroll > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (currentScroll > 100) {
+                    // Hide navbar
+                    navbar.style.transform = 'translateY(-100%)';
+
+                    // Clear any previous timer
+                    if (hideTimer) clearTimeout(hideTimer);
+
+                    // Reappear automatically after 800ms
+                    hideTimer = setTimeout(function() {
+                        navbar.style.transform = 'translateY(0)';
+                    }, 400);
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
